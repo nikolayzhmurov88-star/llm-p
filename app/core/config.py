@@ -17,6 +17,12 @@ class Settings(BaseSettings):
     openrouter_site_url: str
     openrouter_app_name: str
 
+    # Дополнительные настройки
+    chat_history_limit: int = 10
+    chat_system_prompt: str = "Отвечай кратко на русском языке."
+    openrouter_temperature: float = 0.7
+
+
     model_config = {"env_file": ".env", "env_file_encoding": "utf-8"}
 
 
