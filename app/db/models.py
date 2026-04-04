@@ -1,6 +1,5 @@
 from datetime import datetime, timezone
 from typing import List
-
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 from sqlalchemy import ForeignKey
 from app.db.base import Base
