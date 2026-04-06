@@ -1,10 +1,7 @@
 from datetime import datetime, timedelta, timezone
-from typing import Annotated, Any
-
-from fastapi import Depends, HTTPException, Security, status
+from typing import Any
 from jose import JWTError, jwt
 from passlib.context import CryptContext
-
 from app.core.config import settings
 from app.core.errors import UnauthorizedError
 
