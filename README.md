@@ -75,3 +75,37 @@ uv run uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
 Приложение будет доступно по адресу:
 
 **Swagger UI:** http://127.0.0.1:8000/docs  
+
+### Демонстрация работы
+
+## Регистрация
+![alt text](app/images/reg1.png)
+![alt text](app/images/reg2.png)
+![alt text](app/images/reg3.png)
+
+
+## Логин
+![alt text](app/images/login1.png)
+![alt text](app/images/login2.png)
+![alt text](app/images/login3.png)
+
+## Авторизация в Swagger
+![alt text](app/images/auth1.png)
+![alt text](app/images/auth2.png)
+
+## Получение данных пользователя
+![alt text](app/images/authme1.png)
+![alt text](app/images/authme2.png)
+
+## Вызов POST /chat
+![alt text](app/images/Chat1.png)
+![alt text](app/images/Chat2.png)
+![alt text](app/images/Chat3.png)
+
+## Получение истории через GET /chat/history
+![alt text](app/images/History1.png)
+![alt text](app/images/History2.png)
+![alt text](app/images/History3.png)
+
+## Удаление истории через DELETE /chat/history
+![alt text](app/images/Delete.png)

@@ -20,9 +20,11 @@ AsyncSessionLocal = async_sessionmaker(
 )
 
 async def get_async_session() -> AsyncGenerator[AsyncSession, None]:
+
     """
     Зависимость для FastAPI: получает новую асинхронную сессию.
     """
+    
     async with AsyncSessionLocal() as session:
         try:
             yield session

@@ -11,6 +11,7 @@ class AuthUseCase:
     def __init__(self, user_repo: UserRepository):
         self.user_repo = user_repo
     
+
     async def register(self, email: str, password: str, role: str = "user") -> User:
 
         """Регистрация"""
@@ -30,7 +31,6 @@ class AuthUseCase:
         return created_user
    
 
-
     async def login(self, email: str, password: str) -> str:
 
         """Логин"""
@@ -47,6 +47,7 @@ class AuthUseCase:
         )
         
         return access_token
+    
     
     async def get_profile(self, user_id: int) -> User:
 

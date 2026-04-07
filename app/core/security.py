@@ -61,7 +61,6 @@ def create_access_token(
     )
 
 
-
 def decode_access_token(token: str) -> dict[str, Any]:
 
     """

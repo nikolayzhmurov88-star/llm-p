@@ -3,6 +3,7 @@ from app.repositories.chat_messages import ChatMessageRepository
 from app.services.openrouter_client import OpenRouterClient
 
 class ChatUseCase:
+
     """Бизнес-логика общения с LLM"""
     
     def __init__(
@@ -10,9 +11,9 @@ class ChatUseCase:
         message_repo: ChatMessageRepository,
         openrouter_client: OpenRouterClient
     ):
+        
         """
         Инициализация с репозиторием и OpenRouter клиентом
-
         """
         self.message_repo = message_repo
         self.openrouter_client = openrouter_client
@@ -20,16 +21,15 @@ class ChatUseCase:
     async def ask(self, user_id: int, prompt: str, system: str, max_history: int, temperature: float) -> str:
         
         messages = await self._build_context(user_id, prompt, system, max_history)
-    
-   
+        
         await self.message_repo.create(user_id, "user", prompt)
     
         response = await self.openrouter_client.chat_completion(messages, temperature)
         
         assistant_content = response["choices"][0]["message"]["content"]
     
-   
         await self.message_repo.create(user_id, "assistant", assistant_content)
+        
         return assistant_content
     
     async def _build_context(

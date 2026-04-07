@@ -5,9 +5,8 @@ from app.core.config import settings
 from app.core.errors import ExternalServiceError
 
 
-
-
 class OpenRouterClient:
+
 
     """
     Клиент для работы с OpenRouter API через HTTP-запросы
