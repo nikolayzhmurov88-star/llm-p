@@ -1,7 +1,10 @@
-import httpx
+import httpx  
+#import json
 from typing import List, Dict, Any
 from app.core.config import settings
 from app.core.errors import ExternalServiceError
+
+
 
 
 class OpenRouterClient:
@@ -22,6 +25,7 @@ class OpenRouterClient:
     async def chat_completion(
         self,
         messages: List[Dict[str, str]],
+        temperature: float
     ) -> Dict[str, Any]:
         
         """
@@ -31,7 +35,17 @@ class OpenRouterClient:
         payload = {
             "model": settings.openrouter_model,
             "messages": messages,
+            "temperature": temperature
         }
+
+        '''
+        Для логирования PayLoad
+        print("\n" + "═"*100)
+        print("Payload")
+        print(json.dumps(payload, ensure_ascii=False, indent=2))
+        print("═"*100 + "\n")
+        '''
+    
 
         async with httpx.AsyncClient(timeout=60.0) as client:
             response = await client.post(

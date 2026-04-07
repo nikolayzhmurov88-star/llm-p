@@ -29,12 +29,12 @@ async def chat(
     """
     try:
 
-        chat_usecase.history_limit = request.max_history
-
         answer = await chat_usecase.ask(
             user_id=user_id,
             prompt=request.prompt,
             system=request.system,
+            max_history=request.max_history, 
+            temperature=request.temperature   
         )
         return ChatResponse(answer=answer)
     except ExternalServiceError as e:

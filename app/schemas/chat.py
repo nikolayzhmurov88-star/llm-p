@@ -10,12 +10,12 @@ class ChatRequest(BaseModel):
     prompt: str = Field(
         description="Основной текст запроса пользователя"
     )
-    system: str = Field(
-        default="", 
+    system: str = Field( 
+        default="Ты разговариваешь с сарказмом",
         description="Системная инструкция для модели"
     )
     max_history: int = Field(
-        default=10, 
+        default=10,
         ge=0,
         description="Сколько сообщений из истории брать для контекста"
     )

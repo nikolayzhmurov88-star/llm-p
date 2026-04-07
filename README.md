@@ -45,6 +45,7 @@ cd llm-p
 3. Вставьте API key в `.env` одной командой:
 
    ```bash
+   echo "" >> .env 
    echo "OPENROUTER_API_KEY=sk-or-v1-ваш_ключ_здесь" >> .env
    ```
 
@@ -68,10 +69,9 @@ uv pip install -r requirements.txt
 ## Запуск приложения
 
 ```bash
-uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
+uv run uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
 ```
 
 Приложение будет доступно по адресу:
 
 **Swagger UI:** http://127.0.0.1:8000/docs  
-**ReDoc:** http://127.0.0.1:8000/redoc
