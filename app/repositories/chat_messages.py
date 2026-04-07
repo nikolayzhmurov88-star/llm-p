@@ -37,9 +37,9 @@ class ChatMessageRepository:
         result = await self._session.execute(
             select(ChatMessage)
             .where(ChatMessage.user_id == user_id)
-            .order_by(ChatMessage.created_at.desc())
+            .order_by(ChatMessage.created_at.asc())
             .limit(n)
-            .options(selectinload(ChatMessage.user))  
+            .options(selectinload(ChatMessage.user))
         )
         return result.scalars().all()
 
@@ -49,7 +49,7 @@ class ChatMessageRepository:
         Удалить всю историю сообщений пользователя
         """
         
-        result = await self._session.execute(
+        await self._session.execute(
             delete(ChatMessage)
             .where(ChatMessage.user_id == user_id)
         )

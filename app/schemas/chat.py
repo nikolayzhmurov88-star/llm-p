@@ -1,5 +1,5 @@
 from pydantic import BaseModel, Field
-
+from datetime import datetime
 
 class ChatRequest(BaseModel):
 
@@ -36,3 +36,12 @@ class ChatResponse(BaseModel):
     answer: str = Field(
         description="Ответ модели на запрос пользователя"
     )
+
+# Дополнительная схема для вывода истории
+class ChatMessageOut(BaseModel):
+    id: int
+    role: str
+    content: str
+    created_at: datetime
+
+    model_config = {"from_attributes": True}

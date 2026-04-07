@@ -38,9 +38,7 @@ class ChatMessage(Base):
     user_id: Mapped[int] = mapped_column(ForeignKey("users.id", ondelete="CASCADE"))
     role: Mapped[str] = mapped_column()
     content: Mapped[str] = mapped_column()
-    from datetime import datetime, timezone
-    created_at: Mapped[datetime] = mapped_column(default=lambda: datetime.now(timezone.utc)
-)
+    created_at: Mapped[datetime] = mapped_column(default=lambda: datetime.now(timezone.utc))
 
     # Связь
     user: Mapped["User"] = relationship(back_populates="messages")

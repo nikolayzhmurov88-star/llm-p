@@ -2,7 +2,6 @@ from typing import List, Dict
 from app.core.config import settings
 from app.repositories.chat_messages import ChatMessageRepository
 from app.services.openrouter_client import OpenRouterClient
-from app.db.models import ChatMessage 
 
 class ChatUseCase:
     """Бизнес-логика общения с LLM"""

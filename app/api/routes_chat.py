@@ -1,11 +1,9 @@
 from typing import List
 from fastapi import APIRouter, Depends, HTTPException, status
 from app.core.errors import ExternalServiceError
-from app.schemas.chat import ChatRequest, ChatResponse
-from app.schemas.user import UserPublic
+from app.schemas.chat import ChatRequest, ChatResponse, ChatMessageOut
 from app.usecases.chat import ChatUseCase
 from app.api.deps import get_chat_usecase, get_current_user_id
-from app.db.models import ChatMessage
 
 
 router = APIRouter(tags=["chat"])
@@ -53,20 +51,20 @@ async def chat(
 
 @router.get(
     "/history",
-    response_model=List[UserPublic],
+    response_model=None,
     summary="Получить историю сообщений",
 )
 async def get_history(
     user_id: int = Depends(get_current_user_id),
     chat_usecase: ChatUseCase = Depends(get_chat_usecase),
     limit: int = 50,
-) -> List[ChatMessage]:
+) -> dict[str: List[ChatMessageOut]]:
     """
     Возвращает историю сообщений текущего пользователя.
     """
     history = await chat_usecase.message_repo.get_last_n_by_user(user_id, limit)
-    
-    return list(reversed(history))
+    items = [ChatMessageOut.model_validate(msg) for msg in history]
+    return {'items': items}
 
 
 @router.delete(
